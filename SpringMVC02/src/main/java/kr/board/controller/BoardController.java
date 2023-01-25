@@ -28,4 +28,9 @@ public class BoardController {
 		return list; // JSON 데이터 형식으로 변환(API)해서 리턴(응답)하겠다.
 	}
 	
+	@RequestMapping("/boardInsert.do")
+	public @ResponseBody void boardInsert(Board vo) {
+		boardMapper.boardInsert(vo);
+	}
+	
 }
