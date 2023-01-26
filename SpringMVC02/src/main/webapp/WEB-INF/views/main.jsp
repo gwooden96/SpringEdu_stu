@@ -36,13 +36,21 @@
         listHtml+="<td>조회수</td>";
         listHtml+="</tr>";
        $.each(data,function(index,obj){ // obj={"idx":5,"title:","게시판"~~}
-           listHtml+="<tr>";
+            listHtml+="<tr>";
             listHtml+="<td>"+ obj.idx +"</td>";
-            listHtml+="<td>"+ obj.title +"</td>";
+            listHtml+="<td><a href='javascript:goContent("+obj.idx+")'>"+ obj.title +"</a></td>";
             listHtml+="<td>"+ obj.writer +"</td>";
             listHtml+="<td>"+ obj.indate +"</td>";
             listHtml+="<td>"+ obj.count+ "</td>";
             listHtml+="</tr>";
+            
+            listHtml+="<tr id='c"+ obj.idx +"' style='display:none'>";
+            listHtml+="<td>내용</td>";
+            listHtml+="<td colspan='4'>";
+            listHtml+="<textarea rows='7' class='form-control'>"+ obj.content + "</textarea>";
+            listHtml+="</td>";
+            listHtml+="</tr>";
+            
        });
         listHtml+="<tr>";
     	listHtml+="<td colspan='5'>";
@@ -80,10 +88,15 @@
 				error : function() { alert("error"); }
 			});
 			
-		$("#title").val("");
+		/* $("#title").val("");
 		$("#content").val("");
-		$("#writer").val("");
+		$("#writer").val(""); */
+		$('#fclear').trigger("click");
 		
+	}
+	
+	function goContent(idx) {
+		$("#c"+idx).css("display", "table-row");
 	}
   	
   	</script>
@@ -116,7 +129,7 @@
                   <tr>
                      <td colspan="2" align="center">
                         <button type="button" class="btn btn-success btn-sm" onclick="goInsert()">등록</button>
-                        <button type="reset" class="btn btn-warning btn-sm">취소</button>
+                        <button type="reset" class="btn btn-warning btn-sm" id="fclear">취소</button>
                         <button type="button" class="btn btn-info btn-sm" onclick="goList()">리스트</button>
                      </td>
                   </tr>   
