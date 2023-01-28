@@ -37,7 +37,7 @@
           <ul class="dropdown-menu">
             <li><a href="#">회원정보수정</a></li>
             <li><a href="#">프로필수정</a></li>
-            <li><a href="#">로그아웃</a></li>
+            <li><a href="${contextPath}/memLogout.do">로그아웃</a></li>
           </ul>
         </li>
       </ul>
