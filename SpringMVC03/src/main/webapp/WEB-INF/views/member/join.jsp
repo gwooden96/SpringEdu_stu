@@ -46,7 +46,7 @@
 	}
   	
   	//비밀번호 같은지 확인하는 함수
-  	function passwordCheck() {
+   	function passwordCheck() {
 		var memPassword1 =  $("#memPassword1").val();
 		var memPassword2 =  $("#memPassword2").val();
 		if(memPassword1 != memPassword2) {
@@ -55,7 +55,7 @@
 			$("#passMessage").html("");
 			$("#memPassword").val(memPassword1);
 		}
-	}
+	} 
   	
   	//나이 입력 안했을시 오류
   	function goInsert() {
@@ -123,7 +123,7 @@
     			</tr>
     			<tr>
     			<td colspan="3" style="text-align: left;">
-    				<psan id="passMessage" style="color:red"></psan><input type="button" class="btn btn-primary btn-sm pull-right" value="회원등록" onclick="goInsert()"/>
+    				<psan id="passMessage" style="color:red"></psan><input type="button" class="btn btn-primary btn-sm pull-right" disabled='disabled' value="회원등록" onclick="goInsert()"/>
     			</td>
     			</tr>
     		</table>
