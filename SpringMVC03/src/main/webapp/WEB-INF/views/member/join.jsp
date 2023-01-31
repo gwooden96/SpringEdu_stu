@@ -35,6 +35,7 @@
 				if(result==1) {
 					$("#chkMessage").html("사용할 수 있는 아이디입니다.");
 					$("#chkType").attr("class", "modal-content panel-success");
+					$("#idche").attr("disabled", false);
 				} else {
 					$("#chkMessage").html("사용할 수 없는 아이디입니다.");
 					$("#chkType").attr("class", "modal-content panel-warning");
@@ -123,7 +124,7 @@
     			</tr>
     			<tr>
     			<td colspan="3" style="text-align: left;">
-    				<psan id="passMessage" style="color:red"></psan><input type="button" class="btn btn-primary btn-sm pull-right" disabled='disabled' value="회원등록" onclick="goInsert()"/>
+    				<psan id="passMessage" style="color:red"></psan><input id="idche" type="button" class="btn btn-primary btn-sm pull-right" disabled='disabled' value="회원등록" onclick="goInsert()"/>
     			</td>
     			</tr>
     		</table>
