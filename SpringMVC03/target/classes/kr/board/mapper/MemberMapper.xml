@@ -20,7 +20,11 @@
 	where memID = #{memID} and memPassword = #{memPassword} 
 	</select>
 
-	
+	<update id="memUpdate" parameterType="kr.board.entity.Member">
+	     update mem_tbl set memPassword=#{memPassword}, memName=#{memName}, 
+	            memAge=#{memAge},memGender=#{memGender},memEmail=#{memEmail} 
+	            where memID=#{memID}
+	  </update>
 
 
 </mapper>
