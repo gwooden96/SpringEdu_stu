@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -24,8 +24,8 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">접속하기<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="${contextPath}/memLoginForm.do">로그인</a></li>
-            <li><a href="${contextPath}/memJoin.do">회원가입</a></li>
+            <li><a href="${contextPath}/memLoginForm.do"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+            <li><a href="${contextPath}/memJoin.do"><span class="glyphicon glyphicon-log-in"></span> 회원가입</a></li>
           </ul>
         </li>
       </ul>
