@@ -36,7 +36,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="${contextPath}/memUpdateForm.do">회원정보수정</a></li>
-            <li><a href="#">프로필수정</a></li>
+            <li><a href="${contextPath}/memImageForm.do">프로필수정</a></li>
             <li><a href="${contextPath}/memLogout.do">로그아웃</a></li>
           </ul>
         </li>
