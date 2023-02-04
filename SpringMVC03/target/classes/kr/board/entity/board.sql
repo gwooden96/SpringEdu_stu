@@ -36,3 +36,5 @@ select * from mem_tbl;
 delete from mem_tbl where memIdx = 2;
 
 drop table mem_tbl;
+
+select * from mem_tbl;
