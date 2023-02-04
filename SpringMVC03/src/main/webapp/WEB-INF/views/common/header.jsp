@@ -32,13 +32,24 @@
       </c:if>
       <c:if test="${!empty mvo}">
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="${contextPath}/memUpdateForm.do">회원정보수정</a></li>
+        <li>
+            <li style=""><a href="${contextPath}/memUpdateForm.do">회원정보수정</a></li>
             <li><a href="${contextPath}/memImageForm.do">프로필수정</a></li>
-            <li><a href="${contextPath}/memLogout.do">로그아웃</a></li>
-          </ul>
+            <li style="border-right: 1px solid lightgray;"><a href="${contextPath}/memLogout.do">로그아웃</a></li>
+         	<c:if test="${!empty mvo}"> 
+                 <c:if test="${mvo.memProfile eq ''}">
+                     <li style="margin-left: 5px; margin-right: 5px">
+                     	<img class="img-circle" src="${contextPath}/resources/images/person.png" style="width: 50px; height: 50px; padding: 5px"/>
+                     	<strong> ${mvo.memName}</strong> 환영띠.
+                     </li>
+                  </c:if>
+                  <c:if test="${mvo.memProfile ne ''}">
+                     <li style="margin-left: 5px; margin-right: 5px">
+                     	<img class="img-circle" src="${contextPath}/resources/upload/${mvo.memProfile}" style="width: 50px; height: 50px; padding: 5px"/>
+                     	<strong>${mvo.memName}</strong> 환영띠.
+                     </li>
+                  </c:if>
+             </c:if>
         </li>
       </ul>
       </c:if>
