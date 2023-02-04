@@ -14,4 +14,11 @@ public interface MemberMapper {
 	public Member memLogin(Member mvo); //로그인체크
 	
 	public int memUpdate(Member mvo); //수정하기
+	
+	public Member getMember(String memID);
+	
+	public void memProfileUpdate(Member mvo); //신규 이미지 업데이트
+	
+	
+	
 }

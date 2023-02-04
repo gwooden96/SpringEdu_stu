@@ -1,5 +1,7 @@
 package kr.board.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -41,6 +43,7 @@ public class MemberController {
 	
 	  }
 	
+	
 	//회원가입 처리
 	@RequestMapping("/memRegister.do")
 	public String memRegister(Member m, String memPassword1, String memPassword2, RedirectAttributes rttr, HttpSession session) {
@@ -80,6 +83,7 @@ public class MemberController {
 		
 	}
 	
+	
 		//로그아웃 처리
 		@RequestMapping("/memLogout.do")
 		public String memLogout(HttpSession session) {
@@ -87,11 +91,13 @@ public class MemberController {
 			return "redirect:/";
 		}
 		
+		
 		//로그인 화면으로 이동
 		@RequestMapping("/memLoginForm.do")
 		public String memLoginForm() {
 			return "member/memLoginForm";
 		}
+		
 		
 		//로그인 기능 구현
 		@RequestMapping("memLogin.do")
@@ -115,11 +121,13 @@ public class MemberController {
 			}
 		}
 		
+		
 		//회원정보수정화면
 		@RequestMapping("/memUpdateForm.do")
 		public String memUpdateForm() {
 			return "member/memUpdateForm";
 		}
+		
 		
 		//회원정보수정
 		@RequestMapping("/memUpdate.do")
@@ -158,6 +166,7 @@ public class MemberController {
 					}
 		}
 		
+		
 		//회원의 사진등록 화면
 		@RequestMapping("/memImageForm.do")
 		public String memImageForm() {
@@ -167,7 +176,7 @@ public class MemberController {
 		
 		  //회원사진 이미지 업로드(upload, DB저장)
 	    @RequestMapping("/memImageUpdate.do")
-	    public String memImagesUpdate(HttpServletRequest request, RedirectAttributes rttr) {
+	    public String memImagesUpdate(HttpServletRequest request, HttpSession session, RedirectAttributes rttr) {
 	       //파일 업로드 API(cos.jar, 3가지)
 	       MultipartRequest multi = null;
 	       
@@ -183,8 +192,46 @@ public class MemberController {
 	          return "redirect:/memImageForm.do";
 	       }
 	       
-	       return "";
+	       //데이터베이스 테이블에 회원이미지를 업데이트
+	       String memID = multi.getParameter("memID");
+	       String newProfile = "";
+	       File file = multi.getFile("memProfile");
+	       if(file != null) { //업로드가 된 상태(.png  .jpg  .gif)
+	    	   //이미지파일 여부를 체크 -> 이미지 파일이 아니면 삭제
+	    	   String ext = file.getName().substring(file.getName().lastIndexOf(".")+1);
+	    	   ext = ext.toUpperCase(); //png, gif, jpg
+	    	   if(ext.equals("PNG") || ext.equals("GIF") || ext.equals("JPG")) {
+	    		   //새로 업로드된 이미지(NEW), 현재DB에 있는 이미지(OLD)
+	    		   String oldProfile = memberMapper.getMember(memID).getMemProfile();
+	    		   File oldFile = new File(savePath+"/"+oldProfile);
+	    		   if(oldFile.exists()) {
+	    			   oldFile.delete();
+	    		   }
+	    		   newProfile = file.getName();
+	    	   } else { //이미지 파일이 아니면 
+				if(file.exists()) {
+					file.delete(); //삭제
+				}
+				rttr.addFlashAttribute("msgType", "실패 메세지");
+				rttr.addFlashAttribute("msg", "이미지 파일만 업로드 가능합니다.");
+				return "redirect:/memImageForm.do";
+			 }
+	       }
+	       // 새로운 이미지를 테이블에 업데이트
+	       Member mvo = new Member();
+	       mvo.setMemID(memID);
+	       mvo.setMemProfile(newProfile);
+	       memberMapper.memProfileUpdate(mvo); //이미지 업데이트 성공
+	       
+	       //회원 정보 다시 불러오기
+	       Member m = memberMapper.getMember(memID);
+	       
+	       //세션을 새롭게 생성한다.
+	       session.setAttribute("mvo", m);
+	       
+	       rttr.addFlashAttribute("msgType", "성공 메세지");
+	       rttr.addFlashAttribute("msg", "이미지 변경 완료!");
+	       return "redirect:/";
 	    }
 
-		
 }
