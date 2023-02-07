@@ -52,7 +52,7 @@
 
 <div class="container">
 <jsp:include page="../common/header.jsp"/>
-  <h2>Spring MVC03</h2>
+  <h2>회원정보수정</h2>
   <div class="panel panel-default">
     <div class="panel-heading">회원정보수정</div>
     <div class="panel-body">

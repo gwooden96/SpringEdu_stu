@@ -25,7 +25,7 @@
 
 <div class="container">
  <jsp:include page="../common/header.jsp"/>
-  <h2>Panel Heading</h2>
+  <h2>프로필 수정</h2>
   <div class="panel panel-default">
     <div class="panel-heading">회원사진등록양식</div>
     <div class="panel-body">

@@ -25,7 +25,7 @@
 
 <div class="container">
  <jsp:include page="../common/header.jsp"/>
-  <h2>Panel Heading</h2>
+  <h2>로그인</h2>
   <div class="panel panel-default">
     <div class="panel-heading">로그인화면</div>
     <div class="panel-body">
