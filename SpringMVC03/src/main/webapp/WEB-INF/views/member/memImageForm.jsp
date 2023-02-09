@@ -37,7 +37,7 @@
     				<td>${mvo.memID}</td>
     			</tr>
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">비밀번호</td>
+    				<td style="width: 110px; vertical-align: middle;">이미지</td>
     				<td colspan="2">
 	    				<span class="btn btn-default">
 		    				이미지를 업로드하세요.
